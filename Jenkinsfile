@@ -6,7 +6,7 @@ pipeline {
                 echo 'Hello Stage 1!!!'
                 echo 'clone the repo'
                 sh 'rm -fr cd ~/Desktop/jenkins-test'
-                sh 'cd ~/Desktop && git clone https://github.com/abhay-bhati/jenkins-test.git'
+                sh 'cd ~/Desktop && git clone git@github.com:abhay-bhati/jenkins-test.git'
             }
         }
         stage('Stage 2') {
