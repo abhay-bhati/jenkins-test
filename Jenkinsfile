@@ -18,8 +18,7 @@ pipeline {
          stage('Stage 3') {
             steps {
                 echo 'Hello New Stage3!!!!'
-                sh 'docker build .'
-                sh 'docker build -t my_second_image' 
+                sh 'docker build -t docker-test-image .' 
             }
         }
     }
