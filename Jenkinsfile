@@ -1,7 +1,5 @@
 pipeline {
-    agent docker {
-        image: 'second-image'
-    }
+    agent any
     environment {
        DOCKERHUB_CREDENTIALS = credentials('dockerhub');
     }
@@ -18,6 +16,11 @@ pipeline {
             steps {
                 echo 'Hello New Stage 2!!!'
                 sh 'cd ~/Desktop/jenkins-test && git pull origin main'
+            }
+        }
+        stage 'Docker Install' {
+            steps {
+                sh 'npm install docker'
             }
         }
         stage ('Docker Login') {
