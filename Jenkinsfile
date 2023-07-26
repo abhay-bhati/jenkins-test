@@ -18,11 +18,11 @@ pipeline {
                 sh 'cd ~/Desktop/jenkins-test && git pull origin main'
             }
         }
-        stage('Docker Install') {
-            steps {
-                echo 'pip install docker'
-            }
-        }
+        // stage('Docker Install') {
+        //     steps {
+        //         echo 'pip install docker'
+        //     }
+        // }
         stage ('Docker Login') {
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
