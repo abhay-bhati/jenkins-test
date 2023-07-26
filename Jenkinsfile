@@ -20,10 +20,11 @@ pipeline {
         }
         stage('Docker Install') {
             steps {
-                echo 'Docker Install STage'
+                echo 'pip install docker'
             }
         }
         stage ('Docker Login') {
+            agent 
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
