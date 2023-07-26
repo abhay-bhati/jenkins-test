@@ -1,5 +1,7 @@
 pipeline {
-    agent any 
+    agent docker {
+        image: 'second-image'
+    }
     environment {
        DOCKERHUB_CREDENTIALS = credentials('dockerhub');
     }
