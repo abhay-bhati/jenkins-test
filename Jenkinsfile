@@ -1,10 +1,8 @@
 pipeline {
-    // environment {
-    // registry = "abhaybhati121/second-image"
-    // registryCredential = 'dockerhub_id'
-    // dockerImage = '8ccecaec28be'
-    // }
     agent any 
+    environment {
+       DOCKERHUB_CREDENTIALS = credentials('dockerhub');
+    }
     stages {
         stage('Stage 1') {
             steps {
@@ -20,10 +18,12 @@ pipeline {
                 sh 'cd ~/Desktop/jenkins-test && git pull origin main'
             }
         }
+        stage ('Docker Login') {
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        }
          stage('Stage 3') {
             steps {
                 echo 'Hello New Stage3!!!!'
-                sh 'docker install'
                 sh 'docker build -t docker-test-image .' 
             }
         }
