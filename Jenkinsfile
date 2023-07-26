@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Docker Install') {
             steps {
-                sh 'npm install docker'
+                echo 'Docker Install STage'
             }
         }
         stage ('Docker Login') {
