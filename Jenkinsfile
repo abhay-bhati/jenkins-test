@@ -1,4 +1,9 @@
 pipeline {
+    // environment {
+    // registry = "abhaybhati121/second-image"
+    // registryCredential = 'dockerhub_id'
+    // dockerImage = '8ccecaec28be'
+    // }
     agent any 
     stages {
         stage('Stage 1') {
@@ -18,6 +23,7 @@ pipeline {
          stage('Stage 3') {
             steps {
                 echo 'Hello New Stage3!!!!'
+                sh 'docker install'
                 sh 'docker build -t docker-test-image .' 
             }
         }
