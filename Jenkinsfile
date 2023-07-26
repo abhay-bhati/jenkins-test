@@ -18,7 +18,7 @@ pipeline {
                 sh 'cd ~/Desktop/jenkins-test && git pull origin main'
             }
         }
-        stage 'Docker Install' {
+        stage('Docker Install') {
             steps {
                 sh 'npm install docker'
             }
