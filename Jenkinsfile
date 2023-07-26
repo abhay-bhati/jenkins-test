@@ -25,7 +25,7 @@ pipeline {
         }
         stage ('Docker Login') {
             agent {
-                docker { image 'node:18-alpine'}
+                docker
             }
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
