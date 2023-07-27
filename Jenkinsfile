@@ -13,7 +13,7 @@ pipeline {
         stage ('Docker Login') {
             steps {
                script{
-                dockerImage = docker.build test:latest
+                dockerImage = docker.build "test"
                }
             }
         }
