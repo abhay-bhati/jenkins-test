@@ -7,6 +7,7 @@ pipeline {
        AWS_REPO_NAME = 'docker-deploy-1';
        IMAGE_REPO_NAME = 'docker-image-aws';
        IMAGE_TAG = 'latest';
+       PROFILE = 'abhay121'
     }
     stages {
         stage('Git Checkout') {
@@ -23,7 +24,7 @@ pipeline {
         }
         stage ('AWS Login') {
             steps {
-               sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest'
+               sh 'aws ecr get-login-password --profile abhay121 --region ap-south-1 | docker login --username AWS --password-stdin 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest'
             }
         }
         stage ('AWS Deploy') {
