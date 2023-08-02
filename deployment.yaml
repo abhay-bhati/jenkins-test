@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - image: 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest
-          name: docker-test-build
+          name: docker-image-aws
           resources:
             limits:
               cpu: 0.5
