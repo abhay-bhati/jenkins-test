@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Stage 4') {
             steps {
-                echo 'Hello New Stage3!!!!'
+                sh "aws eks update-kubeconfig --region ap-south-1 --name eks-2"
             }
         }
     }
