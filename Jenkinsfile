@@ -8,6 +8,7 @@ pipeline {
        IMAGE_REPO_NAME = 'docker-image-aws';
        IMAGE_TAG = 'latest';
        PROFILE = 'abhay121'
+       CLUSTER_NAME = 'eks-2'
     }
     stages {
         stage('Git Checkout') {
@@ -35,7 +36,9 @@ pipeline {
         }
         stage('Stage 4') {
             steps {
-                sh "aws eks update-kubeconfig --region ap-south-1 --name eks-2"
+                sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${CLUSTER_NAME}"
+                sh "kubectl apply -f deployment.yaml"
+                sh "kubectl apply -f service.yml"
             }
         }
     }
