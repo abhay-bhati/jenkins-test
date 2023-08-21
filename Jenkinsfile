@@ -41,5 +41,8 @@ pipeline {
                 sh "kubectl apply -f service.yml"
             }
         }
+        stage('Slack Notifs') {
+            slackSend color: "#FFFF00", message: "Build Initiated: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)\n Build info\n App Name: ${params.appName}\n Package Name(appId): ${params.appId}\n Asset URL: ${params.imageUrl}\n Playstore Account: ${params.accountName} Build triggered by <@${params.user}> \n versionCode :${params.versionCode}  \n"
+        }
     }
 }
