@@ -42,10 +42,16 @@ pipeline {
         //     }
         // }
          stage('Publish on Playstore'){
+            
+            // try {
+            //     androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+            // } catch(err) {
+            //     echo "Caught: ${err}"
+            // }
           
             steps{
                 catchError(
-                    message: ${err}
+                    message: "${err}"
                 )
                 {
                     sh "false"
