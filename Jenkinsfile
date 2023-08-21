@@ -45,7 +45,7 @@ pipeline {
           
             steps{
                 catchError(
-                    message: "Error inside the catchError block"
+                    message: ${err}
                 )
                 {
                     sh "false"
