@@ -41,9 +41,14 @@ pipeline {
         //         sh "kubectl apply -f service.yml"
         //     }
         // }
+         stage('Publish on Playstore'){
+            steps{
+                androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+            }
+        }
         stage('Slack Notifs') {
             steps {
-                slackSend color: "#FFFF00", message: "Build Initiated: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)\n Build info\n App Name: ${params.appName}\n Package Name(appId): ${params.appId}\n Asset URL: ${params.imageUrl}\n Playstore Account: ${params.accountName} Build triggered by <@${params.user}> \n versionCode :${params.versionCode}  \n"
+                slackSend color: "#FFFF00", message: "Slack Notifs by Abhay"
             }
         }
     }
