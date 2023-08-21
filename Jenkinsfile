@@ -42,6 +42,11 @@ pipeline {
         //     }
         // }
          stage('Publish on Playstore'){
+            catchError(
+                    message: "Error inside the catchError block"
+                ) {
+                    sh "false"
+                }
             steps{
                 androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
             }
@@ -52,4 +57,10 @@ pipeline {
             }
         }
     }
+        // post{
+        //     success {
+            
+        //     } error 
+            
+        //     }
 }
