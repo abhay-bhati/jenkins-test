@@ -51,7 +51,7 @@ pipeline {
           
             steps{
                 catchError(
-                    message: "${err}"
+                    message: "Caught: ${err}"
                 )
                 {
                     sh "false"
