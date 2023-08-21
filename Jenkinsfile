@@ -11,36 +11,36 @@ pipeline {
        CLUSTER_NAME = 'eks-2'
     }
     stages {
-        stage('Git Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-        stage ('Docker Build') {
-            steps {
-               script{
-                dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-               }
-            }
-        }
-        stage ('AWS Login') {
-            steps {
-               sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest'
-            }
-        }
-        stage ('AWS Deploy') {
-            steps {
-                sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${AWS_REPO_URI}:${IMAGE_TAG}"
-                sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_REPO_NAME}:${IMAGE_TAG}"
-            }
-        }
-        stage('Stage 4') {
-            steps {
-                sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${CLUSTER_NAME}"
-                sh "kubectl apply -f deployment.yaml"
-                sh "kubectl apply -f service.yml"
-            }
-        }
+        // stage('Git Checkout') {
+        //     steps {
+        //         checkout scm
+        //     }
+        // }
+        // stage ('Docker Build') {
+        //     steps {
+        //        script{
+        //         dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        //        }
+        //     }
+        // }
+        // stage ('AWS Login') {
+        //     steps {
+        //        sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest'
+        //     }
+        // }
+        // stage ('AWS Deploy') {
+        //     steps {
+        //         sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${AWS_REPO_URI}:${IMAGE_TAG}"
+        //         sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_REPO_NAME}:${IMAGE_TAG}"
+        //     }
+        // }
+        // stage('Stage 4') {
+        //     steps {
+        //         sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${CLUSTER_NAME}"
+        //         sh "kubectl apply -f deployment.yaml"
+        //         sh "kubectl apply -f service.yml"
+        //     }
+        // }
         stage('Slack Notifs') {
             steps {
                 slackSend color: "#FFFF00", message: "Build Initiated: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)\n Build info\n App Name: ${params.appName}\n Package Name(appId): ${params.appId}\n Asset URL: ${params.imageUrl}\n Playstore Account: ${params.accountName} Build triggered by <@${params.user}> \n versionCode :${params.versionCode}  \n"
