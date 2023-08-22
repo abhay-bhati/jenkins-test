@@ -43,21 +43,21 @@ pipeline {
         // }
          stage('Publish on Playstore'){
             
-            // try {
-            //     androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
-            // } catch(err) {
-            //     echo "Caught: ${err}"
-            // }
-          
-            steps{
-                catchError(
-                    message: "Caught: ${err}"
-                )
-                {
-                    sh "false"
-                }
+            try {
                 androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+            } catch(err) {
+                echo "Caught: ${err}"
             }
+          
+            // steps{
+            //     catchError(
+            //         message: "Caught: ${err}"
+            //     )
+            //     {
+            //         sh "false"
+            //     }
+            //     androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+            // }
         }
         stage('Slack Notifs') {
             steps {
