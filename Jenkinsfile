@@ -63,7 +63,7 @@ pipeline {
                 }
                 failure {
                     echo "Failure"
-                    echo "Error: ${err}"
+                    echo "Error: ${currentBuild.result}"
                 }
             }
          }
