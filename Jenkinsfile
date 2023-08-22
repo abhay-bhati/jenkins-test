@@ -42,7 +42,6 @@ pipeline {
         //     }
         // }
         //  stage('Publish on Playstore'){
-          
         //     steps{
         //         catchError(
         //             message: "Caught: ${err}"
@@ -54,15 +53,19 @@ pipeline {
         //     }
         // }
         node {
-        try {
-            steps{
-                androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+            try {
+                   androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+        } catch(e) {
+                echo "Caouth: ${err}"
             }
         }
-        catch(e) {
-            throw e
-        }
-        }
+        // try {
+        //                        androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+
+        // }
+        // catch(err) {
+        //     echo "cauthg: ${err}"
+        // }
         // stage('Slack Notifs') {
         //     steps {
         //         slackSend color: "#FFFF00", message: "Slack Notifs by Abhay"
