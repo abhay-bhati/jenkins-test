@@ -17,7 +17,10 @@ pipeline {
             }
             post {
                 always {
-                    echo "AAlways: ${env.success}"
+                    echo "AAlways: ${env.JOB_NAME}"
+                    echo "2: ${env.BUILD_NUMBER}"
+                    echo "3: ${env.SUCCESS}"
+                    echo "4: ${env.STATUS}"
                 }
                 failure {
                     echo "FFajilure"
@@ -73,12 +76,12 @@ pipeline {
         //     }
         // }
     }
-        post{
-            always {
-                echo "Always: ${env.failure}"
-            }
-            failure {
-                echo "Failure"
-            }
-        }
+        // post{
+        //     always {
+        //         echo "Always: ${env.BUILD_NUMBER}"
+        //     }
+        //     failure {
+        //         echo "Failure"
+        //     }
+        // }
 }
