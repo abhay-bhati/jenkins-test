@@ -27,7 +27,6 @@ pipeline {
             //         echo "FFajilure"
             //     }
             // }
-        }
         // stage ('Docker Build') {
         //     steps {
         //        script{
