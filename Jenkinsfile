@@ -15,6 +15,7 @@ pipeline {
             steps {
                 checkout scm
             }
+        }
             // post {
             //     always {
             //         echo "AAlways: ${env.JOB_NAME}"
