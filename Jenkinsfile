@@ -67,7 +67,7 @@ pipeline {
     }
         post{
             always {
-                echo "Always"
+                echo "Always: ${env}"
             }
             failure {
                 echo "Failure"
