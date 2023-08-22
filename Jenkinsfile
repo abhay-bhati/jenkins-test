@@ -15,6 +15,14 @@ pipeline {
             steps {
                 checkout scm
             }
+            post {
+                always {
+                    echo "AAlways"
+                }
+                failure {
+                    echo "FFajilure"
+                }
+            }
         }
         // stage ('Docker Build') {
         //     steps {
