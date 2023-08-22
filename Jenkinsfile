@@ -41,30 +41,31 @@ pipeline {
         //         sh "kubectl apply -f service.yml"
         //     }
         // }
-         stage('Publish on Playstore'){
-            steps{
-            try {
-                androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
-            } catch(err) {
-                echo "Caught: ${err}"
-            }
-            }
+        //  stage('Publish on Playstore'){
           
-            // steps{
-            //     catchError(
-            //         message: "Caught: ${err}"
-            //     )
-            //     {
-            //         sh "false"
-            //     }
-            //     androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
-            // }
-        }
-        stage('Slack Notifs') {
-            steps {
-                slackSend color: "#FFFF00", message: "Slack Notifs by Abhay"
+        //     steps{
+        //         catchError(
+        //             message: "Caught: ${err}"
+        //         )
+        //         {
+        //             sh "false"
+        //         }
+        //         androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+        //     }
+        // }
+        try {
+            steps{
+                androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
             }
         }
+        catch(e) {
+            throw e
+        }
+        // stage('Slack Notifs') {
+        //     steps {
+        //         slackSend color: "#FFFF00", message: "Slack Notifs by Abhay"
+        //     }
+        // }
     }
         // post{
         //     success {
