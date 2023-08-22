@@ -63,7 +63,7 @@ pipeline {
                 }
                 failure {
                     echo "Failure"
-                    echo ${err}
+                    echo "Error: ${err}"
                 }
             }
          }
