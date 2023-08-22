@@ -87,7 +87,7 @@ pipeline {
                     echo "Success"
                     // build job : 'test'
                     build(job : 'test',
-                    propogate: true,
+                    propagate: true,
                     wait: false)
 
                 }
