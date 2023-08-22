@@ -66,9 +66,11 @@ pipeline {
         // }
     }
         post{
-            success {
-                echo "Env: ${env}"
-            } error 
-                echo "Env: ${env}"
+            always {
+                echo "Always"
             }
+            failure {
+                echo "Failure"
+            }
+        }
 }
