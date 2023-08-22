@@ -19,8 +19,10 @@ pipeline {
                 always {
                     echo "AAlways: ${env.JOB_NAME}"
                     echo "2: ${env.BUILD_NUMBER}"
-                    echo "3: ${env.SUCCESS}"
-                    echo "4: ${env.STATUS}"
+                    echo "3: ${env.status}"
+                    echo "4: ${env.details}"
+                    echo "5: ${env.DETAILS}"
+                    echo "6: ${JSON.parse(env)}"
                 }
                 failure {
                     echo "FFajilure"
