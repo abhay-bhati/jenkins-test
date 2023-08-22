@@ -53,6 +53,7 @@ pipeline {
         //         androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
         //     }
         // }
+        node {
         try {
             steps{
                 androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
@@ -60,6 +61,7 @@ pipeline {
         }
         catch(e) {
             throw e
+        }
         }
         // stage('Slack Notifs') {
         //     steps {
