@@ -87,12 +87,14 @@ pipeline {
             steps{
                 echo "Job Trigger Pipeline"
             }
-            post {
+        }
+    }
+    post {
                 success {
                     echo "Success"
                     // build job : 'test'
                     build(job : 'test',
-                    propagate: false,
+                    propagate: true,
                     wait: false)
 
                 }
@@ -100,6 +102,4 @@ pipeline {
                     echo "Failure"
                 }
             }
-        }
-    }
 }
