@@ -87,9 +87,7 @@ pipeline {
             steps{
                 echo "Job Trigger Pipeline"
             }
-        }
-    }
-    post {
+            post {
                 success {
                     echo "Success"
                     // build job : 'test'
@@ -102,4 +100,12 @@ pipeline {
                     echo "Failure"
                 }
             }
+        }
+
+        stage('After Stage'){
+            steps {
+                echo "Workinnggggg!"
+            }
+        }
+    }
 }
