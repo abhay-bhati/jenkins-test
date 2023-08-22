@@ -15,19 +15,18 @@ pipeline {
             steps {
                 checkout scm
             }
-            post {
-                always {
-                    echo "AAlways: ${env.JOB_NAME}"
-                    echo "2: ${env.BUILD_NUMBER}"
-                    echo "3: ${env.status}"
-                    echo "4: ${env.details}"
-                    echo "5: ${env.DETAILS}"
-                    echo "6: ${JSON.parse(env)}"
-                }
-                failure {
-                    echo "FFajilure"
-                }
-            }
+            // post {
+            //     always {
+            //         echo "AAlways: ${env.JOB_NAME}"
+            //         echo "2: ${env.BUILD_NUMBER}"
+            //         echo "3: ${env.status}"
+            //         echo "4: ${env.details}"
+            //         echo "5: ${env.DETAILS}"
+            //     }
+            //     failure {
+            //         echo "FFajilure"
+            //     }
+            // }
         }
         // stage ('Docker Build') {
         //     steps {
@@ -54,16 +53,18 @@ pipeline {
         //         sh "kubectl apply -f service.yml"
         //     }
         // }
-        //  stage('Publish on Playstore'){
-        //     steps{
-        //         catchError(
-        //             message: "Caught: ${err}"
-        //         )
-        //         {
-        //             sh "false"
-        //         }
-        //         androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
-        //     }
+         stage('Publish on Playstore'){
+            steps{
+                androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+            }
+            post {
+                success {
+                    echo "Scucess"
+                }
+                failure {
+                    echo "Failure"
+                }
+            }
         // 
         // try {
         //                        androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
