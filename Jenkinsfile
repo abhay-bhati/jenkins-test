@@ -16,6 +16,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Git Checkout') {
+            steps {
+                checkout scm
+            }
+        }
             // post {
             //     always {
             //         echo "AAlways: ${env.JOB_NAME}"
@@ -28,13 +33,13 @@ pipeline {
             //         echo "FFajilure"
             //     }
             // }
-        // stage ('Docker Build') {
-        //     steps {
-        //        script{
-        //         dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-        //        }
-        //     }
-        // }
+        stage ('Docker Build') {
+            steps {
+               script{
+                dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+               }
+            }
+        }
         // stage ('AWS Login') {
         //     steps {
         //        sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest'
