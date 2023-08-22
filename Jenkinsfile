@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    echo "AAlways: ${env}"
+                    echo "AAlways: ${env.success}"
                 }
                 failure {
                     echo "FFajilure"
@@ -75,7 +75,7 @@ pipeline {
     }
         post{
             always {
-                echo "Always: ${env}"
+                echo "Always: ${env.failure}"
             }
             failure {
                 echo "Failure"
