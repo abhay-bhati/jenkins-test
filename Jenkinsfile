@@ -16,7 +16,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Git Checkout22') {
+        stage('Git Checkout222') {
             steps {
                 checkout scm
             }
