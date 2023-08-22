@@ -63,7 +63,6 @@ pipeline {
                 }
                 failure {
                     echo "Failure"
-                    echo "111: ${currentBuild.error}"
                     echo "222: ${currentBuild.err}"
                 }
             }
