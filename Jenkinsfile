@@ -53,40 +53,43 @@ pipeline {
         //         sh "kubectl apply -f service.yml"
         //     }
         // }
-         stage('Publish on Playstore'){
+        // ******* END **********
+
+        //  stage('Publish on Playstore'){
+        //     steps{
+        //         androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+        //     }
+        //     post {
+        //         success {
+        //             echo "Scucess"
+        //         }
+        //         failure {
+        //             post {
+        //                 success {
+
+        //                 }
+        //                 failure {
+        //                     echo "1: ${env.result}"
+        //                 }
+        //             }
+        //             echo "Failure"
+        //             echo "222: ${currentBuild.err}"
+        //         }
+        //     }
+        //  }
+        // 
+        stage('New Job Trigger'){
             steps{
-                androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
+                echo "Job Trigger Pipeline"
             }
             post {
                 success {
-                    echo "Scucess"
+                    echo "Success"
+                    build job : 'test'
                 }
                 failure {
                     echo "Failure"
-                    echo "222: ${currentBuild.err}"
                 }
             }
-         }
-        // 
-        // try {
-        //                        androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
-
-        // }
-        // catch(err) {
-        //     echo "cauthg: ${err}"
-        // }
-        // stage('Slack Notifs') {
-        //     steps {
-        //         slackSend color: "#FFFF00", message: "Slack Notifs by Abhay"
-        //     }
-        // }
-    }
-        // post{
-        //     always {
-        //         echo "Always: ${env.BUILD_NUMBER}"
-        //     }
-        //     failure {
-        //         echo "Failure"
-        //     }
-        // }
+        }
 }
