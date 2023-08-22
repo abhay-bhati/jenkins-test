@@ -85,7 +85,11 @@ pipeline {
             post {
                 success {
                     echo "Success"
-                    build job : 'test'
+                    // build job : 'test'
+                    build(job : 'test',
+                    propogate: true,
+                    wait: false)
+
                 }
                 failure {
                     echo "Failure"
