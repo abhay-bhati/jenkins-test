@@ -69,6 +69,6 @@ pipeline {
             success {
                 echo "Env: ${env}"
             } error 
-            
+                echo "Env: ${env}"
             }
 }
