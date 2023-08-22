@@ -11,11 +11,11 @@ pipeline {
        CLUSTER_NAME = 'eks-2'
     }
     stages {
-        // stage('Git Checkout') {
-        //     steps {
-        //         checkout scm
-        //     }
-        // }
+        stage('Git Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         // stage ('Docker Build') {
         //     steps {
         //        script{
@@ -51,14 +51,7 @@ pipeline {
         //         }
         //         androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
         //     }
-        // }
-        node {
-            try {
-                   androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
-        } catch(e) {
-                echo "Caouth: ${err}"
-            }
-        }
+        // 
         // try {
         //                        androidApkUpload googleCredentialsId: params.accountName, apkFilesPattern: "app.aab", trackName: 'production', rolloutPercentage:'100'
 
@@ -72,10 +65,10 @@ pipeline {
         //     }
         // }
     }
-        // post{
-        //     success {
+        post{
+            success {
+                echo "Env: ${env}"
+            } error 
             
-        //     } error 
-            
-        //     }
+            }
 }
