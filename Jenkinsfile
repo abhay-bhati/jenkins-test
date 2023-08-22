@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    echo "AAlways"
+                    echo "AAlways: ${env}"
                 }
                 failure {
                     echo "FFajilure"
