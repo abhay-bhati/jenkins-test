@@ -90,7 +90,7 @@ pipeline {
                     value: '${env.BUILD_NUMBER}'
                     propagate: false,
                     wait: false)
-                    echo 'Envv: env.BUILD_NUMBER'
+                    echo 'Envvv: env.BUILD_NUMBER'
                 }
                 failure {
                     echo "Failure"
