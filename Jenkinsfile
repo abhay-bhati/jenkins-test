@@ -78,29 +78,29 @@ pipeline {
         //     }
         //  }
         // 
-        // stage('New Job Trigger'){
-        //     steps{
-        //         echo "Job Trigger Pipeline"
-        //     }
-        //     post {
-        //         success {
-        //             echo "Success"
-        //             // build job : 'test'
-        //             build(job : 'test',
-        //             propagate: false,
-        //             wait: false)
-
-        //         }
-        //         failure {
-        //             echo "Failure"
-        //         }
-        //     }
-        // }
+        stage('New Job Trigger'){
+            steps{
+                echo "Job Trigger Pipeline"
+            }
+            post {
+                success {
+                    echo "Success"
+                    // build job : 'test'
+                    build(job : 'test',
+                    value: '${env.BUILD_NUMBER}'
+                    propagate: false,
+                    wait: false)
+                    echo 'Envv: env.BUILD_NUMBER'
+                }
+                failure {
+                    echo "Failure"
+                }
+            }
+        }
 
         stage('After Stage'){
             steps {
                 echo "Workinnggggg!"
-                echo "BuildNo. - ${env.BUILD_NUMBER}"
             }
         }
     }
