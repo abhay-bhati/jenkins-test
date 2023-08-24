@@ -87,7 +87,7 @@ pipeline {
                     echo "Success"
                     // build job : 'test'
                     build(job : 'test',
-                    value: '${env.BUILD_NUMBER}'
+                    value: '${env.BUILD_NUMBER}',
                     propagate: false,
                     wait: false)
                     echo 'Envvv: env.BUILD_NUMBER'
