@@ -16,11 +16,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Git Checkout222') {
-            steps {
-                checkout scm
-            }
-        }
             // post {
             //     always {
             //         echo "AAlways: ${env.JOB_NAME}"
@@ -33,13 +28,13 @@ pipeline {
             //         echo "FFajilure"
             //     }
             // }
-        stage ('Docker Build') {
-            steps {
-               script{
-                dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-               }
-            }
-        }
+        // stage ('Docker Build') {
+        //     steps {
+        //        script{
+        //         dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        //        }
+        //     }
+        // }
         // stage ('AWS Login') {
         //     steps {
         //        sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 862839345820.dkr.ecr.ap-south-1.amazonaws.com/docker-deploy-1:latest'
@@ -83,28 +78,29 @@ pipeline {
         //     }
         //  }
         // 
-        stage('New Job Trigger'){
-            steps{
-                echo "Job Trigger Pipeline"
-            }
-            post {
-                success {
-                    echo "Success"
-                    // build job : 'test'
-                    build(job : 'test',
-                    propagate: false,
-                    wait: false)
+        // stage('New Job Trigger'){
+        //     steps{
+        //         echo "Job Trigger Pipeline"
+        //     }
+        //     post {
+        //         success {
+        //             echo "Success"
+        //             // build job : 'test'
+        //             build(job : 'test',
+        //             propagate: false,
+        //             wait: false)
 
-                }
-                failure {
-                    echo "Failure"
-                }
-            }
-        }
+        //         }
+        //         failure {
+        //             echo "Failure"
+        //         }
+        //     }
+        // }
 
         stage('After Stage'){
             steps {
                 echo "Workinnggggg!"
+                echo "BuildNo. - ${env.BUILD_NUMBER}"
             }
         }
     }
